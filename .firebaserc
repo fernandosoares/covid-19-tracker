@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "soares-dev-environment"
+  },
+  "targets": {
+    "soares-dev-environment": {
+      "hosting": {
+        "soaresdev-covid-19": [
+          "soaresdev-covid-19"
+        ]
+      }
+    }
+  }
+}
