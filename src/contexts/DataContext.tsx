@@ -1,4 +1,11 @@
 import { createContext } from 'react'
-import { IState } from '../interfaces'
+import { IData, IState } from '../interfaces'
 
-export const DataContext = createContext<IState>({} as IState)
+interface IProps {
+  state: IData[]
+  search: (value: string) => void
+  result: IData
+  loading: boolean
+}
+
+export const DataContext = createContext<IProps>({} as IProps)

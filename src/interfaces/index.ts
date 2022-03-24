@@ -15,6 +15,7 @@ export interface IDataRow {
 
 export interface IState {
   data: IData[]
+  search?: (value: string) => void
   loading?: boolean
 }
 

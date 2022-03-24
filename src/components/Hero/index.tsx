@@ -5,9 +5,9 @@ import { Container, Typography } from '@mui/material'
 import moment from 'moment'
 
 const Hero: React.FC = () => {
-  const { data, loading } = useContext(DataContext)
+  const { state, loading } = useContext(DataContext)
   const date = !loading
-    ? moment(data[0].updated).format('YYYY/MMM/DD HH\\hMM')
+    ? moment(state[0].updated).format('YYYY/MMM/DD HH\\hMM')
     : ' ...'
   return (
     <Container maxWidth='lg'>
