@@ -9,7 +9,6 @@ export const DataContextProvider = ({
 }: IDataContextProviderProps) => {
   const [data, setData] = useState({} as { state: IData[] })
   const [result, setResult] = useState<IData>({} as IData)
-  const [error, setError] = useState('')
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
