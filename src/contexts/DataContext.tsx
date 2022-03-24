@@ -1,5 +1,5 @@
 import { createContext } from 'react'
-import { IData, IState } from '../interfaces'
+import { IData } from '../interfaces'
 
 interface IProps {
   state: IData[]
