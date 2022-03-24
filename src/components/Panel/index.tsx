@@ -4,9 +4,13 @@ import { DataContext } from '../../contexts/DataContext'
 import { DataGrid, GridColDef } from '@mui/x-data-grid'
 import { Box } from '@mui/system'
 import { IDataRow } from '../../interfaces'
+import LinearLoading from '../Loading/Linear'
 
 const Panel: React.FC = () => {
-  const info = useContext(DataContext)
+  const { data, loading } = useContext(DataContext)
+
+  if (loading) return <LinearLoading />
+
   const formatNumber = (value: number) => {
     return new Intl.NumberFormat('pt-BR', { maximumFractionDigits: 2 }).format(
       value
@@ -67,19 +71,18 @@ const Panel: React.FC = () => {
   ]
   const rows: IDataRow[] = []
   // eslint-disable-next-line array-callback-return
-  !info.loading &&
-    info.data.map((data, i) => {
-      rows.push({
-        id: i,
-        flag: data.countryInfo.flag,
-        country: data.country,
-        population: data.population,
-        cases24: data.todayCases,
-        deaths24: data.todayDeaths,
-        totalCases: data.cases,
-        totalDeaths: data.deaths,
-      })
+  data.map((data, i) => {
+    rows.push({
+      id: i,
+      flag: data.countryInfo.flag,
+      country: data.country,
+      population: data.population,
+      cases24: data.todayCases,
+      deaths24: data.todayDeaths,
+      totalCases: data.cases,
+      totalDeaths: data.deaths,
     })
+  })
 
   return (
     <>
