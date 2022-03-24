@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 
-import { IData, IDataContextProviderProps, IState } from '../interfaces'
+import { IData, IDataContextProviderProps } from '../interfaces'
 import { DataContext } from './DataContext'
 
 export const DataContextProvider = ({
