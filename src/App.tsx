@@ -10,6 +10,7 @@ import Footer from './components/Footer'
 import Header from './components/Header'
 import Hero from './components/Hero'
 import Panel from './components/Panel'
+import Form from './components/Form'
 
 const App: React.FC = () => {
   return (
@@ -18,6 +19,7 @@ const App: React.FC = () => {
       <Header />
       <DataContextProvider>
         <Hero />
+        <Form />
         <Panel />
       </DataContextProvider>
       <Footer />

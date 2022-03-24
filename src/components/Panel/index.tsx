@@ -7,7 +7,7 @@ import { IDataRow } from '../../interfaces'
 import LinearLoading from '../Loading/Linear'
 
 const Panel: React.FC = () => {
-  const { data, loading } = useContext(DataContext)
+  const { state, loading, result } = useContext(DataContext)
 
   if (loading) return <LinearLoading />
 
@@ -74,28 +74,50 @@ const Panel: React.FC = () => {
       valueFormatter: (params: any) => formatNumber(params.value),
     },
   ]
-  const rows: IDataRow[] = []
-  // eslint-disable-next-line array-callback-return
-  data.map((data, i) => {
-    rows.push({
-      id: i,
-      flag: data.countryInfo.flag,
-      country: data.country,
-      population: data.population,
-      cases24: data.todayCases,
-      deaths24: data.todayDeaths,
-      totalCases: data.cases,
-      totalDeaths: data.deaths,
+
+  const isResult: string = result.country
+  const gridHeight: number = !isResult ? 631 : 163
+
+  const rows: IDataRow[] | IDataRow = []
+  if (!isResult) {
+    // eslint-disable-next-line array-callback-return
+    state.map((data, i) => {
+      rows.push({
+        id: i,
+        flag: data.countryInfo.flag,
+        country: data.country,
+        population: data.population,
+        cases24: data.todayCases,
+        deaths24: data.todayDeaths,
+        totalCases: data.cases,
+        totalDeaths: data.deaths,
+      })
     })
-  })
+  } else {
+    rows.push({
+      id: 1,
+      flag: result.countryInfo.flag,
+      country: result.country,
+      population: result.population,
+      cases24: result.todayCases,
+      deaths24: result.todayDeaths,
+      totalCases: result.cases,
+      totalDeaths: result.deaths,
+    })
+  }
 
   return (
     <>
       <Container>
         <Grid container marginTop={4}>
           <Grid item xs={12}>
-            <Box height={631}>
-              <DataGrid pageSize={10} columns={cols} rows={rows} />
+            <Box height={gridHeight}>
+              <DataGrid
+                pageSize={10}
+                columns={cols}
+                rows={rows}
+                rowsPerPageOptions={[1]}
+              />
             </Box>
           </Grid>
         </Grid>
