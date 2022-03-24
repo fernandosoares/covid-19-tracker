@@ -24,7 +24,12 @@ const Panel: React.FC = () => {
       disableColumnMenu: true,
       sortable: false,
       renderCell: (params) => (
-        <CardMedia component='img' src={params.formattedValue} width={64} />
+        <CardMedia
+          component='img'
+          src={params.formattedValue}
+          width={64}
+          loading='lazy'
+        />
       ),
     },
     {
