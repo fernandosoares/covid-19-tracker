@@ -8,9 +8,10 @@ import {
 } from '@mui/material'
 import React, { ChangeEvent, useContext, useState } from 'react'
 import { DataContext } from '../../contexts/DataContext'
+import { IData } from '../../interfaces'
 
 const Form: React.FC = () => {
-  const { state, loading, search } = useContext(DataContext)
+  const { state, loading, search, result, setResult } = useContext(DataContext)
   const [value, setValue] = useState('')
 
   if (loading) return <></>
@@ -27,28 +28,41 @@ const Form: React.FC = () => {
     await search(value)
   }
 
+  const handleClear = () => {
+    setResult({} as IData)
+  }
+
   return (
     <Container maxWidth='lg'>
       <Grid container marginTop={3}>
         <Grid item xs={12}>
-          <FormGroup>
-            <Autocomplete
-              options={options}
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  label='Search by Country'
-                  placeholder='Country name'
-                  value={value}
-                  onSelect={handleChange}
-                />
-              )}
-            />
-          </FormGroup>
+          {!result.country && (
+            <FormGroup>
+              <Autocomplete
+                options={options}
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    label='Search by Country'
+                    placeholder='Country name'
+                    value={value}
+                    onSelect={handleChange}
+                  />
+                )}
+              />
+            </FormGroup>
+          )}
+
           <FormGroup sx={{ marginTop: 2 }}>
-            <Button variant='contained' onClick={handleClick}>
-              Search
-            </Button>
+            {!result.country ? (
+              <Button variant='contained' onClick={handleClick}>
+                Search
+              </Button>
+            ) : (
+              <Button variant='contained' color='success' onClick={handleClear}>
+                Clear
+              </Button>
+            )}
           </FormGroup>
         </Grid>
       </Grid>

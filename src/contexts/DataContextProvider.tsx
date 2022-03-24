@@ -36,7 +36,9 @@ export const DataContextProvider = ({
   }
 
   return (
-    <DataContext.Provider value={{ ...data, search, result, loading }}>
+    <DataContext.Provider
+      value={{ ...data, search, result, setResult, loading }}
+    >
       {children}
     </DataContext.Provider>
   )
