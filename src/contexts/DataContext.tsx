@@ -5,6 +5,7 @@ interface IProps {
   state: IData[]
   search: (value: string) => void
   result: IData
+  setResult: React.Dispatch<React.SetStateAction<IData>>
   loading: boolean
 }
 

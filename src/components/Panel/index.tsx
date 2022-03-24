@@ -116,7 +116,7 @@ const Panel: React.FC = () => {
                 pageSize={10}
                 columns={cols}
                 rows={rows}
-                rowsPerPageOptions={[1]}
+                rowsPerPageOptions={[10]}
               />
             </Box>
           </Grid>
